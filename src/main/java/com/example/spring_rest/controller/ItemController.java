@@ -19,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.example.spring_rest.domain.Item;
 import com.example.spring_rest.service.ItemService;
 
+// url : http://localhost:8080/api/items
 @RestController
 @RequestMapping(path = "/api")
 public class ItemController {
