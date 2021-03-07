@@ -38,8 +38,9 @@ public class ItemController {
     //@GetMapping(path = "/items")
     //@GetMapping("/items")
     public List<Item> getItems() {
-    	System.err.println("ItemController getItems");
+    	log.info("ItemController getItems");
         List<Item> customers = itemService.findAll();
+        log.info("getItems : "+ customers);
         return customers;
     }
     
@@ -47,7 +48,7 @@ public class ItemController {
     @GetMapping(path = "/items/{id}")
     //@GetMapping("/items/{id}")
     public Item getOneItem(@PathVariable("id") long id) {
-    	System.err.println("ItemController getOneItem");
+    	log.info("ItemController getOneItem");
     	Integer select_id = (int)id;
     	return itemService.findOne(select_id);
     }
@@ -56,7 +57,7 @@ public class ItemController {
     @PostMapping("/items")
     public Item createItem(@RequestBody final Item item,
     		final UriComponentsBuilder ucBuilder) {
-    	System.err.println("ItemController createItem");
+    	log.info("ItemController createItem");
     	Item res = new Item();
     	res = itemService.createItem(item);
     	return res;
@@ -67,7 +68,7 @@ public class ItemController {
     public Item updateItem(@PathVariable("id") long id,
     		@RequestBody final Item item,
     		final UriComponentsBuilder ucBuilder) {
-    	System.err.println("ItemController updateItem");
+    	log.info("ItemController updateItem");
     	itemService.updateItem(id, item);
     	return itemService.findOne((int)id);
     }
@@ -75,7 +76,7 @@ public class ItemController {
     //@DeleteMapping(path = "/items/{id}")
     @DeleteMapping("/items/{id}")
     public void deleteItem(@PathVariable("id") long id) {
-    	System.err.println("ItemController deleteItem");
+    	log.info("ItemControlsler deleteItem");
     	itemService.deleteItem((int)id);
     }
 }

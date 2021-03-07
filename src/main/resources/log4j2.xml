@@ -2,7 +2,7 @@
 <Configuration status="info" monitorInterval="30">
     <Properties>
         <Property name="LOG_FORMAT">%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Property>
-        <Property name="BASE_DIR">C:\Users\leeyoungseung\project_source\spring_rest\log</Property>
+        <Property name="BASE_DIR">C:\\Users\\leeyoungseung\\project_source\\spring_rest\\log</Property>
     </Properties>
 
     <Appenders>
