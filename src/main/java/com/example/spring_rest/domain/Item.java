@@ -4,6 +4,7 @@
 package com.example.spring_rest.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,19 +13,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //@JsonFormat(shape=JsonFormat.Shape.ARRAY) : 이게 있음 안되더라....
 @Entity
 @Table(name = "items")
+@DynamicInsert
+@DynamicUpdate
+@Data
 public class Item implements Serializable{
 	
 	@Id
@@ -41,44 +44,5 @@ public class Item implements Serializable{
 	@Column(name ="imgpath")
 	private String imgPath;
 
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", price=" + price + ", imgPath=" + imgPath + "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public String getImgPath() {
-		return imgPath;
-	}
-
-	public void setImgPath(String imgPath) { 
-		this.imgPath = imgPath;
-	}
-	
-	
-	
 	
 }
