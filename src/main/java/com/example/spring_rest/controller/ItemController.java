@@ -2,6 +2,8 @@ package com.example.spring_rest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.spring_rest.domain.Item;
 import com.example.spring_rest.service.ItemService;
+import com.example.spring_rest.dto.ApiResponseDTO;
+import com.example.spring_rest.dto.ItemDTO;
+import com.example.spring_rest.dto.ItemDTO.ResponseOne;
 
 // url : http://localhost:8080/api/items
 @RestController
@@ -35,48 +40,45 @@ public class ItemController {
      * @return
      */
     @RequestMapping(value = "/items", method = RequestMethod.GET)
-    //@GetMapping(path = "/items")
-    //@GetMapping("/items")
-    public List<Item> getItems() {
+    public ApiResponseDTO<ItemDTO.ResponseList> getItems() {
     	log.info("ItemController getItems");
-        List<Item> customers = itemService.findAll();
-        log.info("getItems : "+ customers);
-        return customers;
+    	List<ItemDTO.Response> data = itemService.findAll();
+        log.info("getItems : "+ data);
+        
+        return ApiResponseDTO.createOK(new ItemDTO.ResponseList(data));
     }
     
-    //@RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
+
     @GetMapping(path = "/items/{id}")
-    //@GetMapping("/items/{id}")
-    public Item getOneItem(@PathVariable("id") long id) {
+    public ApiResponseDTO<ItemDTO.ResponseOne> getOneItem(@PathVariable("id") Integer id) {
     	log.info("ItemController getOneItem");
-    	Integer select_id = (int)id;
-    	return itemService.findOne(select_id);
+    	return ApiResponseDTO.createOK(new ItemDTO.ResponseOne(itemService.findById(id)));
     }
     
-    //@PostMapping(path = "/items")
+    
     @PostMapping("/items")
-    public Item createItem(@RequestBody final Item item,
-    		final UriComponentsBuilder ucBuilder) {
+    public ApiResponseDTO<ItemDTO.ResponseOne> createItem(@RequestBody @Valid final ItemDTO.Create create) {
     	log.info("ItemController createItem");
-    	Item res = new Item();
-    	res = itemService.createItem(item);
-    	return res;
+
+    	return ApiResponseDTO.createOK(new ItemDTO.ResponseOne(itemService.createItem(create)));
     }
     
-    //@PutMapping(path = "/items/{id}")
+    
     @PutMapping("/items/{id}")
-    public Item updateItem(@PathVariable("id") long id,
-    		@RequestBody final Item item,
-    		final UriComponentsBuilder ucBuilder) {
+    public ApiResponseDTO<ItemDTO.ResponseOne> updateItem(@PathVariable("id") Integer id,
+    		@RequestBody final ItemDTO.Update update
+    		) {
     	log.info("ItemController updateItem");
-    	itemService.updateItem(id, item);
-    	return itemService.findOne((int)id);
+
+    	return ApiResponseDTO.createOK(new ItemDTO.ResponseOne(itemService.updateItem(id, update)));
     }
     
-    //@DeleteMapping(path = "/items/{id}")
+    
     @DeleteMapping("/items/{id}")
-    public void deleteItem(@PathVariable("id") long id) {
+    public ApiResponseDTO deleteItem(@PathVariable("id") Integer id) {
     	log.info("ItemControlsler deleteItem");
-    	itemService.deleteItem((int)id);
+    	itemService.deleteItem(id);
+    	
+    	return ApiResponseDTO.DEFAULT_OK;
     }
 }

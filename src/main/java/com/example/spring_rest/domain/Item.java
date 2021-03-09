@@ -18,8 +18,11 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AccessLevel;
 
 //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //@JsonFormat(shape=JsonFormat.Shape.ARRAY) : 이게 있음 안되더라....
@@ -28,6 +31,7 @@ import lombok.Data;
 @DynamicInsert
 @DynamicUpdate
 @Data
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Item implements Serializable{
 	
 	@Id
@@ -43,6 +47,20 @@ public class Item implements Serializable{
 	
 	@Column(name ="imgpath")
 	private String imgPath;
+	
+	
+	@Builder
+	private Item(String name, Integer price, String imgPath) {
+		this.name = name;
+		this.price = price;
+		this.imgPath = imgPath;
+	}
 
+	public Item update(String name, Integer price, String imgPath) {
+		this.name = name;
+		this.price = price;
+		this.imgPath = imgPath;
+		return this;
+	}
 	
 }
