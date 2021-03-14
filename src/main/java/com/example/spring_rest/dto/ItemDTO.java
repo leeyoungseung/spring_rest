@@ -4,6 +4,7 @@ package com.example.spring_rest.dto;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.example.spring_rest.domain.Item;
 import com.example.spring_rest.domain.Item.ItemBuilder;
@@ -25,7 +26,7 @@ public class ItemDTO {
 		@NotEmpty
 		private String name;
 		
-		@NotEmpty
+		@NotNull
 		private Integer price;
 		
 		@NotEmpty

@@ -53,8 +53,89 @@ include::{snippets}\items-find-all\http-response.adoc[]
 
 &#160;
 
+[[Item-FindOne]]
+=== 상품 단건 조회
+
+==== Request
+
+include::{snippets}/items-findOne/path-parameters.adoc[]
+
+===== Request HTTP Example
+
+include::{snippets}/items-findOne/http-request.adoc[]
+
+==== Response
+
+include::{snippets}/items-findOne/response-fields-data.adoc[]
+
+===== Response HTTP Example:
+
+include::{snippets}/items-findOne/http-response.adoc[]
+
+&#160;
 
 
+[[Item-Create]]
+=== 상품 등록
+
+==== Request
+
+include::{snippets}/items-create/request-fields.adoc[]
+
+===== Request HTTP Example
+
+include::{snippets}/items-create/http-request.adoc[]
+
+==== Response
+
+include::{snippets}/items-create/response-fields-data.adoc[]
+
+===== Response HTTP Example
+
+include::{snippets}/items-create/http-response.adoc[]
+
+&#160;
 
 
+[[Item-Update]]
+=== 상품 수정
+
+==== Request
+
+include::{snippets}/items-update/path-parameters.adoc[]
+
+include::{snippets}/items-update/request-fields.adoc[]
+
+===== Request HTTP Example
+
+include::{snippets}/items-update/http-request.adoc[]
+
+==== Response
+
+include::{snippets}/items-update/response-fields-data.adoc[]
+
+===== Response HTTP Example:
+
+include::{snippets}/items-update/http-response.adoc[]
+
+&#160;
+
+[[persons-delete]]
+=== 상품 삭제
+
+==== Request
+
+include::{snippets}/items-delete/path-parameters.adoc[]
+
+===== Request HTTP Example
+
+include::{snippets}/items-delete/http-request.adoc[]
+
+==== Response
+
+===== Response HTTP Example:
+
+include::{snippets}/items-delete/http-response.adoc[]
+
+&#160;
 
